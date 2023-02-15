@@ -1,0 +1,7 @@
+{
+    "editor.fontFamily": "'Meslo NG', Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 11,
+    "editor.fontLigatures": true,
+    "workbench.colorTheme": "One Dark Pro Darker",
+    "security.workspace.trust.untrustedFiles": "open"
+}
