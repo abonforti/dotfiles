@@ -1,0 +1,46 @@
+Host jh
+    HostName 192.168.2.201
+    User abonforti
+    ForwardAgent yes
+
+Host void
+     User root
+     HostName {{ (bitwardenFields "item" "void-server").ipv4.value }}
+     Port 19991
+     LocalForward 8006 localhost:8006
+     ForwardAgent yes
+
+Host ha
+        User abonforti
+        HostName 192.168.2.199
+
+Host aws-dev
+    User ec2-user
+    HostName {{ (bitwardenFields "item" "AWS").dxpdevipv4.value }}
+    IdentityFile ~/.ssh/id_ed25519_dxp
+
+========== GENERAL SSH CONFIGURATION ==========
+
+Host *
+  AddressFamily inet
+  HashKnownHosts yes
+  PasswordAuthentication yes
+  ChallengeResponseAuthentication no
+  StrictHostKeyChecking ask
+  ForwardAgent no
+  ForwardX11 no
+  ForwardX11Trusted no
+  ServerAliveInterval 600
+  ServerAliveCountMax 2
+  Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com
+  MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com
+  KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
+  HostKeyAlgorithms ssh-ed25519-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,ssh-ed25519,ssh-rsa
+
+Host bitbucket.org
+    IdentitiesOnly yes
+    IdentityFile ~/.ssh/id_ed25519_dxp
+
+Host github.com
+    IdentitiesOnly yes
+    IdentityFile ~/.ssh/id_ed25519
