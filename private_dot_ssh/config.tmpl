@@ -18,10 +18,18 @@ Host aws-dev
     User ec2-user
     HostName {{ (bitwardenFields "item" "AWS").dxpdevipv4.value }}
     IdentityFile ~/.ssh/id_ed25519_dxp
+    LocalForward 9002 localhost:9002
+    LocalForward 33060 localhost:3306
+    LocalForward 4502 localhost:4502
+    LocalForward 4503 localhost:4503
+    LocalForward 443 localhost:443
+    LocalForward 8090 localhost:8090
 
 ========== GENERAL SSH CONFIGURATION ==========
 
 Host *
+  ControlMaster auto
+  ControlPath /tmp/ssh-%r@%h:%p
   AddressFamily inet
   HashKnownHosts yes
   PasswordAuthentication yes
