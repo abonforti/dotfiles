@@ -1,54 +1,61 @@
 Host jh
-    HostName 192.168.2.201
-    User abonforti
-    ForwardAgent yes
+  HostName 192.168.2.201
+  User abonforti
+  ForwardAgent yes
 
 Host void
-     User root
-     HostName {{ (bitwardenFields "item" "void-server").ipv4.value }}
-     Port 19991
-     LocalForward 8006 localhost:8006
-     ForwardAgent yes
+   User root
+   HostName {{ (bitwardenFields "item" "void-server").ipv4.value }}
+   Port 19991
+   LocalForward 8006 localhost:8006
+   ForwardAgent yes
 
 Host ha
-        User abonforti
-        HostName 192.168.2.199
+  User abonforti
+  HostName 192.168.2.199
 
 Host aws-dev
-    User ec2-user
-    HostName {{ (bitwardenFields "item" "AWS").dxpdevipv4.value }}
-    IdentityFile ~/.ssh/id_ed25519_dxp
-    LocalForward 9002 localhost:9002
-    LocalForward 33060 localhost:3306
-    LocalForward 4502 localhost:4502
-    LocalForward 4503 localhost:4503
-    LocalForward 443 localhost:443
-    LocalForward 8090 localhost:8090
+  User ec2-user
+  HostName {{ (bitwardenFields "item" "AWS").dxpdevipv4.value }}
+  IdentityFile ~/.ssh/id_ed25519_dxp
+  LocalForward 9002 localhost:9002
+  LocalForward 33060 localhost:3306
+  LocalForward 4502 localhost:4502
+  LocalForward 4503 localhost:4503
+#  LocalForward 443 localhost:443
+  LocalForward 8090 localhost:8090
+
+Host github.com
+  User git
+  ControlMaster no
+  IdentitiesOnly yes
+  IdentityFile ~/.ssh/id_ed25519
+  MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com
+
+Host bitbucket.org
+  ControlMaster no
+  IdentitiesOnly yes
+  IdentityFile ~/.ssh/id_ed25519_dxp
 
 ========== GENERAL SSH CONFIGURATION ==========
 
 Host *
   ControlMaster auto
   ControlPath /tmp/ssh-%r@%h:%p
+  #ControlPersist 300
+  #AddKeysToAgent yes
   AddressFamily inet
   HashKnownHosts yes
-  PasswordAuthentication yes
+  PasswordAuthentication no
   ChallengeResponseAuthentication no
   StrictHostKeyChecking ask
+  VerifyHostKeyDNS yes
   ForwardAgent no
   ForwardX11 no
   ForwardX11Trusted no
-  ServerAliveInterval 600
+  ServerAliveInterval 300
   ServerAliveCountMax 2
   Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com
   MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com
   KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
   HostKeyAlgorithms ssh-ed25519-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,ssh-ed25519,ssh-rsa
-
-Host bitbucket.org
-    IdentitiesOnly yes
-    IdentityFile ~/.ssh/id_ed25519_dxp
-
-Host github.com
-    IdentitiesOnly yes
-    IdentityFile ~/.ssh/id_ed25519
