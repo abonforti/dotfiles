@@ -18,6 +18,7 @@ Host aws-dev
   User ec2-user
   HostName {{ (bitwardenFields "item" "AWS").dxpdevipv4.value }}
   IdentityFile ~/.ssh/id_ed25519_dxp
+  ForwardAgent yes
   LocalForward 9002 localhost:9002
   LocalForward 33060 localhost:3306
   LocalForward 4502 localhost:4502
