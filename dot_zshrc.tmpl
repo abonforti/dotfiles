@@ -23,6 +23,9 @@ alias aws-dev='sudo -E ssh -F /Users/a.bonforti/.ssh/config aws-dev'
 [[ ! -d ~/bin ]] || export PATH=$HOME/bin:$PATH
 {{- if eq .chezmoi.os "darwin" }}
 export HOMEBREW_NO_ANALYTICS=1
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 {{- end }}
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
