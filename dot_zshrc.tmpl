@@ -46,9 +46,3 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && export JAVA_HOME=`sdk home java 17.0.7-sapmchn`
 {{- end }}
-
-{{- if eq .chezmoi.os "linux" }}
-if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-    tmux attach -t default || tmux new -s default
-fi
-{{- end }}
