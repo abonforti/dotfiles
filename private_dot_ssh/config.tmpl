@@ -11,10 +11,11 @@ Host void
    ForwardAgent yes
 
 Host ha
-  User hassio
+  User root
   HostName 192.168.2.199
   Port 22
   IdentityFile ~/.ssh/id_ed25519
+  ForwardAgent yes
 
 Host github.com
   User git
