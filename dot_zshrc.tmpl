@@ -31,6 +31,7 @@ if command -v pyenv 1>/dev/null 2>&1; then
   export PYENV_ROOT=$HOME/.pyenv
   eval "$(pyenv init -)"
 fi
+[[ -s "$HOME/.dxp_creds" ]] && source "$HOME/.dxp_creds"
 {{- end }}
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
