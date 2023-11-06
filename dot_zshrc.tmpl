@@ -17,7 +17,6 @@ alias pssh='ssh -o PasswordAuthentication=yes -o PreferredAuthentications=passwo
 
 {{- if eq .chezmoi.os "darwin" }}
 alias brewup='brew update; brew upgrade; brew cleanup; brew doctor'
-alias aws-dev='sudo -E ssh -F /Users/a.bonforti/.ssh/config aws-dev'
 export PATH="/opt/homebrew/opt/awscli@1/bin:$PATH"
 alias starthybris="gradle start -x :infrastructure:dev:startNginx"
 export HYBRIS_OPT_CONFIG_DIR=$HOME/Development/workspaces/opt-properties/dxp
@@ -29,6 +28,7 @@ export HYBRIS_OPT_CONFIG_DIR=$HOME/Development/workspaces/opt-properties/dxp
 {{- if eq .chezmoi.os "darwin" }}
 export HOMEBREW_NO_ANALYTICS=1
 if command -v pyenv 1>/dev/null 2>&1; then
+  export PYENV_ROOT=$HOME/.pyenv
   eval "$(pyenv init -)"
 fi
 {{- end }}
