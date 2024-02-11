@@ -3,6 +3,11 @@ Host jh
   User root
   ForwardAgent yes
 
+Host jhts
+  HostName 100.73.233.101
+  User root
+  ForwardAgent yes
+
 Host void
    User root
    HostName {{ (bitwardenFields "item" "void-server").ipv4.value }}
