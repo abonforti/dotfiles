@@ -13,7 +13,6 @@ Host void
    HostName {{ (bitwardenFields "item" "void-server").ipv4.value }}
    Port 19991
    LocalForward 8006 localhost:8006
-   ForwardAgent yes
 
 Host ha
   User root
@@ -29,10 +28,12 @@ Host github.com
   IdentityFile ~/.ssh/id_ed25519
   MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com
 
+{{- if eq .chezmoi.os "darwin" }}
 Host bitbucket.org
   ControlMaster no
   IdentitiesOnly yes
   IdentityFile ~/.ssh/id_ed25519_dxp
+{{- end }}
 
 ========== GENERAL SSH CONFIGURATION ==========
 
