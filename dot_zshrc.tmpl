@@ -20,6 +20,7 @@ alias md='mkdir -p'
 alias pssh='ssh -o PasswordAuthentication=yes -o PreferredAuthentications=password'
 {{- if eq .chezmoi.os "linux" }}
 alias ssh='ssh-add ~/.ssh/id_ed25519 && ssh'
+alias pwnnet='sudo /bin/sh $HOME/bin/linux_connection_share.sh usb0 wlp4s0'
 {{- end }}
 
 {{- if eq .chezmoi.os "darwin" }}
