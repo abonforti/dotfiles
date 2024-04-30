@@ -13,7 +13,7 @@
 
 [core]
   excludesfile = ~/.gitignore_global
-  {{-if eq .chezmoi.os "darwin" }}
+  {{- if eq .chezmoi.os "darwin" }}
   pager = delta
   {{- end }}
 
@@ -36,7 +36,7 @@
         trustExitCode = true
 {{- end }}
 
-{{-if eq .chezmoi.os "darwin" }}
+{{- if eq .chezmoi.os "darwin" }}
 [delta]
   features = decorations
   dark = true
