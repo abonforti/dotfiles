@@ -26,7 +26,7 @@ alias pwnnet='sudo /bin/sh $HOME/bin/linux_connection_share.sh usb0 wlp4s0'
 
 {{- if eq .chezmoi.os "darwin" }}
 alias brewup='brew update; brew upgrade; brew cleanup; brew doctor'
-export PATH="/opt/homebrew/opt/awscli@1/bin:$PATH"
+export PATH="/opt/homebrew/opt/python@3.12/libexec/bin:$PATH"
 alias starthybris="gradle start -x :infrastructure:dev:startNginx"
 export HYBRIS_OPT_CONFIG_DIR=$HOME/Development/workspaces/opt-properties/dxp
 {{- end }}
