@@ -8,7 +8,7 @@ fi
 source ~/.powerlevel10k/powerlevel10k.zsh-theme
 
 ## Aliases
-{{- if eq. chezmoi.os "darwin" }}
+{{- if eq .chezmoi.os "darwin" }}
 alias ls='eza --icons --octal-permissions -al --no-permissions'
 alias dssh='ssh -l abonforti -i ~/.ssh/id_ed25519_dxp'
 {{ else }}
