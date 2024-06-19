@@ -18,6 +18,8 @@ alias cat='bat -p --theme=OneHalfDark'
 alias gl='git log --color --graph --pretty=format:"%Cblue%G?%Creset %Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ch) %C(bold blue)<%an>%Creset" --abbrev-commit'
 alias md='mkdir -p'
 alias pssh='ssh -o PasswordAuthentication=yes -o PreferredAuthentications=password'
+alias ffind='find . -type f -iname "*$1*"'
+alias dfind='find . -type d -iname "*$1*"'
 {{- if eq .chezmoi.os "linux" }}
 alias ssh='ssh-add ~/.ssh/id_ed25519 && ssh'
 alias pwnnet='sudo /bin/sh $HOME/bin/linux_connection_share.sh usb0 wlp4s0'
