@@ -40,7 +40,7 @@ Host bitbucket.org
 Host *
   ControlMaster auto
   ControlPath /tmp/ssh-%r@%h:%p
-  #ControlPersist 300
+  ControlPersist yes
   #AddKeysToAgent yes
   AddressFamily inet
   HashKnownHosts yes

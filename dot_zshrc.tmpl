@@ -23,6 +23,8 @@ alias dfind='find . -type d -iname "$1"'
 {{- if eq .chezmoi.os "linux" }}
 alias ssh='ssh-add ~/.ssh/id_ed25519 && ssh'
 alias pwnnet='sudo /bin/sh $HOME/bin/linux_connection_share.sh usb0 wlp4s0'
+alias encmount='veracrypt -t -k "" --pim=0 --protect-hidden=no /dev/sda1 /media/encrypted_usb'
+alias encdismount='veracrypt -d /dev/sda1'
 {{- end }}
 
 {{- if eq .chezmoi.os "darwin" }}
