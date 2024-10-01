@@ -9,7 +9,8 @@ Darwin)
     ;;
 Linux)
     curl -L https://github.com/bitwarden/clients/releases/download/cli-v2024.9.0/bw-linux-2024.9.0.zip -o bw.zip && unzip bw.zip -d bw && sudo mv bw/bw /usr/local/bin/bw && sudo chmod +x /usr/local/bin/bw && rm -rf bw.zip bw
-    bw set url https://bw.alessiobonforti.com
+    bw set server https://bw.alessiobonforti.com
+    bw login
     bw unlock
     ;;
 *)
