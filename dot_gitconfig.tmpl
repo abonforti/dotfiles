@@ -22,8 +22,6 @@
   cob = checkout -b
   st = status
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-{{- if eq .chezmoi.os "darwin" }}
   d = diff --color
 [pager]
   d = diff-so-fancy | less --tabs=4 -RFXS
-{{- end }}

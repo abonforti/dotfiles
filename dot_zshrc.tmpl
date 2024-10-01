@@ -58,6 +58,10 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
+{{- if eq .chezmoi.os "linux" }}
+eval "$(oh-my-posh init zsh --config ~/.omp/config/zen.toml)"
+{{- end}}
+
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 if [ ! -d "$ZINIT_HOME" ]; then
    mkdir -p "$(dirname $ZINIT_HOME)"
