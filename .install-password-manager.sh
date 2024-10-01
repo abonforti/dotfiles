@@ -8,10 +8,7 @@ Darwin)
     /opt/homebrew/bin/brew install bitwarden-cli
     ;;
 Linux)
-    wget -O /tmp/bw.zip https://github.com/bitwarden/clients/releases/download/cli-v2024.9.0/bw-linux-2024.9.0.zip
-    unzip /tmp/bw.zip
-    mv /tmp/bw /usr/local/bin/bw
-    chmod +x /usr/local/bin/bw
+    curl -L https://github.com/bitwarden/clients/releases/download/cli-v2024.9.0/bw-linux-2024.9.0.zip -o bw.zip && unzip bw.zip -d bw && sudo mv bw/bw /usr/local/bin/bw && sudo chmod +x /usr/local/bin/bw && rm -rf bw.zip bw
     ;;
 *)
     echo "unsupported OS"
