@@ -10,8 +10,8 @@ Darwin)
 Linux)
     wget -O /tmp/bw.zip https://github.com/bitwarden/clients/releases/download/cli-v2024.9.0/bw-linux-2024.9.0.zip
     unzip /tmp/bw.zip
-    mv /tmp/bw ~/bin/bw
-    chmod +x ~/bin/bw
+    mv /tmp/bw /usr/local/bin/bw
+    chmod +x /usr/local/bin/bw
     ;;
 *)
     echo "unsupported OS"
