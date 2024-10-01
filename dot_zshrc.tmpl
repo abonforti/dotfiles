@@ -27,13 +27,21 @@ export HYBRIS_OPT_CONFIG_DIR=$HOME/Development/workspaces/opt-properties/dxp
 
 ## ENV
 [[ ! -d ~/bin ]] || export PATH=$HOME/bin:$PATH
+
+{{- if eq .chezmoi.os "linux" }}
 [[ ! -d /snap/bin ]] || export PATH=$PATH:/snap/bin
+{{- end }}
+
 {{- if eq .chezmoi.os "darwin" }}
 export HOMEBREW_NO_ANALYTICS=1
-if command -v pyenv 1>/dev/null 2>&1; then
-  export PYENV_ROOT=$HOME/.pyenv
-  eval "$(pyenv init -)"
-fi
+#if command -v pyenv 1>/dev/null 2>&1; then
+#  export PYENV_ROOT=$HOME/.pyenv
+#  eval "$(pyenv init -)"
+#fi
+pyenv() {
+  eval "$(command pyenv init -)"
+  pyenv "$@"
+}
 [[ -s "$HOME/.dxp_creds" ]] && source "$HOME/.dxp_creds"
 {{- end }}
 
@@ -42,13 +50,36 @@ fi
 export KEYID=0x7F3F35EB80ECF823
 
 {{- if eq .chezmoi.os "darwin" }}
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+
+lazy_load_nvm() {
+  unset -f npm node nvm
+  export NVM_DIR=~/.nvm
+  [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
+}
+
+npm() {
+  lazy_load_nvm
+  npm $@
+}
+
+node() {
+  lazy_load_nvm
+  node $@
+}
+
+nvm() {
+  lazy_load_nvm
+  nvm $@
+}
+
 export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && export JAVA_HOME=`sdk home java 17.0.7-sapmchn`
+sdk() {
+  unset -f sdk
+  [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
+  sdk "$@"
+}
+
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   eval "$(oh-my-posh init zsh --config ~/.omp/config/zen.toml)"
 fi
