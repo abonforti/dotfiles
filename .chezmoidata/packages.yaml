@@ -46,3 +46,7 @@ packages:
       - 'visual-studio-code'
       - 'viscosity'
       - 'whatsapp'
+  linux:
+    apt:
+      'zip'
+      'unzip'
