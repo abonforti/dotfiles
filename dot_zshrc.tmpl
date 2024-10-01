@@ -97,8 +97,14 @@ fi
 # Shell integrations
 eval "$(fzf --zsh)"
 
-## Lazy loads
+{{- if (and (eq .chezmoi.os "linux") (ne .chezmoi.hostname "pop-os")) }}
+eval "$(oh-my-posh init zsh --config ~/.omp/config/zen-remote.toml)"
+{{ else if (and (eq .chezmoi.os "linux") (eq .chezmoi.hostname "pop-os")) }}
+eval "$(oh-my-posh init zsh --config ~/.omp/config/zen.toml)"
+{{- end }}
+
 {{- if eq .chezmoi.os "darwin" }}
+## Lazy loads
 
 pyenv() {
   eval "$(command pyenv init -)"
