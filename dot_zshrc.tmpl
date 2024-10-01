@@ -35,10 +35,15 @@ export KEYID=0x7F3F35EB80ECF823
 {{- if eq .chezmoi.os "darwin" }}
 [[ -s "$HOME/.dxp_creds" ]] && source "$HOME/.dxp_creds"
 
+if [[ -f "/opt/homebrew/bin/brew" ]] then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 export HYBRIS_OPT_CONFIG_DIR=$HOME/Development/workspaces/opt-properties/dxp
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_ENV_HINTS=1
 export PATH="/opt/homebrew/opt/python@3.12/libexec/bin:$PATH"
+{{- end}}
 
 # History
 HISTSIZE=5000
@@ -52,12 +57,6 @@ setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
-
-
-
-if [[ -f "/opt/homebrew/bin/brew" ]] then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
 
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 if [ ! -d "$ZINIT_HOME" ]; then
@@ -93,7 +92,6 @@ fi
 
 # Shell integrations
 eval "$(fzf --zsh)"
-{{- end }}
 
 ## Lazy loads
 {{- if eq .chezmoi.os "darwin" }}
