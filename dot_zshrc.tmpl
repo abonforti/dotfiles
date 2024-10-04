@@ -20,6 +20,7 @@ alias ssh='ssh-add ~/.ssh/id_ed25519 && ssh'
 alias pwnnet='sudo /bin/sh $HOME/bin/linux_connection_share.sh usb0 wlp4s0'
 alias encmount='mkdir /tmp/enc_usb; veracrypt -t -k "" --pim=0 --protect-hidden=no /dev/sda1 /tmp/enc_usb'
 alias encdismount='veracrypt -d /dev/sda1; rm -rf /tmp/enc_usb'
+alias code='flatpak run com.visualstudio.code'
 {{- end }}
 
 ## ENV
@@ -58,10 +59,6 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
-{{- if eq .chezmoi.os "linux" }}
-eval "$(oh-my-posh init zsh --config ~/.omp/config/zen.toml)"
-{{- end}}
-
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 if [ ! -d "$ZINIT_HOME" ]; then
    mkdir -p "$(dirname $ZINIT_HOME)"
@@ -72,19 +69,19 @@ if [ -d ${ZINIT_HOME} ]; then
   # Initialize
   source "${ZINIT_HOME}/zinit.zsh"
 
+  # Load completions
+  autoload -Uz compinit && compinit
+  zinit cdreplay -q
+
   # Add in zsh plugins
+  zinit light Aloxaf/fzf-tab
   zinit light zsh-users/zsh-syntax-highlighting
   zinit light zsh-users/zsh-completions
   zinit light zsh-users/zsh-autosuggestions
-  zinit light Aloxaf/fzf-tab
 
   # Snippets
   zinit snippet OMZP::sudo
   zinit snippet OMZP::command-not-found
-
-  # Load completions
-  autoload -Uz compinit && compinit
-  zinit cdreplay -q
 
   # Completion styling
   zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
