@@ -9,6 +9,7 @@ alias md='mkdir -p'
 alias pssh='ssh -o PasswordAuthentication=yes -o PreferredAuthentications=password'
 alias ffind='find . -type f -iname "*$1"'
 alias dfind='find . -type d -iname "$1"'
+alias fritz='ssh -J root@192.168.2.201,root@192.168.2.1:19991,abonforti@10.44.6.1 -L 2222:192.168.1.1:80 localhost -N'
 
 {{- if eq .chezmoi.os "darwin" }}
 alias dssh='ssh -l abonforti -i ~/.ssh/id_ed25519_dxp'
