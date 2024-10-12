@@ -20,7 +20,6 @@ alias ssh='ssh-add ~/.ssh/id_ed25519 && ssh'
 alias pwnnet='sudo /bin/sh $HOME/bin/linux_connection_share.sh usb0 wlp4s0'
 alias encmount='mkdir /tmp/enc_usb; veracrypt -t -k "" --pim=0 --protect-hidden=no /dev/sda1 /tmp/enc_usb'
 alias encdismount='veracrypt -d /dev/sda1; rm -rf /tmp/enc_usb'
-alias code='flatpak run com.visualstudio.code'
 {{- end }}
 
 ## ENV
