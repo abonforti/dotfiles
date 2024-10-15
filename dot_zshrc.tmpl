@@ -11,6 +11,8 @@ alias ffind='find . -type f -iname "*$1"'
 alias dfind='find . -type d -iname "$1"'
 alias fritzssh='ssh -J root@192.168.2.201,root@192.168.2.1:19991,abonforti@10.44.6.1 -L 2222:192.168.1.1:80 localhost -N'
 alias fritzkill='bash -c "PID=\$(lsof -ti:2222); if [[ -n \$PID ]]; then kill \$PID && echo \"Killed process \$PID\"; else echo \"No process found listening on port 2222.\"; fi"'
+alias copy='rsync -aPh'
+alias pkill='pkill -i'
 
 {{- if eq .chezmoi.os "darwin" }}
 alias dssh='ssh -l abonforti -i ~/.ssh/id_ed25519_dxp'
